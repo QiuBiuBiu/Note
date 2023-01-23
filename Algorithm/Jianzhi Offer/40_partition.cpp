@@ -25,9 +25,16 @@ public:
         return res;
     }
 
+/*
+    取随机数的通用公式: a + rand() % n；其中的 a 是起始值，n 是整数的范围。
+
+    要取得 [a,b) 的随机整数，使用 (rand() % (b-a)) + a;
+    要取得 [a,b] 的随机整数，使用 (rand() % (b-a+1)) + a;
+    要取得 (a,b] 的随机整数，使用 (rand() % (b-a)) + a + 1;
+*/
     int partition(vector<int>& arr, int start, int end)
     {
-        int random_index = start; // 快排算法中这里应该是随机选择[start, end)中的一个
+        int random_index = (rand() % (end - start + 1)) + start; // 快排算法中这里是随机选择[start, end]中的一个
         swap(arr[random_index], arr[end]);
         int index = start - 1;
         for (int i = start; i < end; i++)
