@@ -2,7 +2,7 @@
 #include <memory>
 #include <mutex>
 
-/*
+
 namespace HungryMode
 {
     class Singleton
@@ -25,7 +25,7 @@ namespace HungryMode
     std::shared_ptr<Singleton> Singleton::instance = std::shared_ptr<Singleton>(new Singleton()); // 饿汉式会在一开始就创建对象
 
 }
-*/
+
 
 namespace LazyMode
 {
@@ -89,6 +89,7 @@ namespace DoubleCheck
 
 int main()
 {
+    std::cout << " main " << std::endl;
     // auto hunger_ins = HungryMode::Singleton::getInstance();
     // auto lazy_ins = LazyMode::Singleton::getInstance();
     auto ins1 = DoubleCheck::Singleton::getInstance();
