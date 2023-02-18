@@ -13,5 +13,14 @@
 ## Data Structure
 * [Data Structure Basic](Data%20Structure/Basic/README.md)
 
+## Computer Network
+* [《Xiaolin Network》](Network/xiaolinNetwork/README.md)
+
+## OS
+* [《Xiaolin OS》](OS/xiaolinOS/README.md)
+
 ## Design Pattern
 * [Design Pattern Basic](Design%20Pattern/README.md)
+
+## iOS
+* [Swift](iOS/swift/README.md)
