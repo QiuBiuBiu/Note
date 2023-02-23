@@ -40,7 +40,7 @@
 
 ## 宏函数返回两数的最大值？
 ```c++
-#define MAX(a,b) ((a)>(b)?(a):(b))
+#define MAX(a,b) (a)>(b)?(a):(b)
 
 int c = MAX(1,2);
 ```

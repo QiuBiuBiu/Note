@@ -79,9 +79,9 @@ public:
 int main()
 {
     int a = 0;
-    sharedPointer<int> ptr;
-    sharedPointer<int> ptr2(ptr);
+    sharedPointer<int> ptr;         // 构造
+    sharedPointer<int> ptr2(ptr);   // 复制构造，或者 sharedPointer<int> ptr2 = ptr;
     sharedPointer<int> ptr3;
-    ptr3 = ptr;
+    ptr3 = ptr;                     // 复制赋值构造
     return 0;
 }
