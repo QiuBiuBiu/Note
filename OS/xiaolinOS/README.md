@@ -4,7 +4,7 @@
 * [为什么要有虚拟内存？](memoryManagement.md)
 
 ## 进程管理
-* [进程间有哪些通信方式？](processManagement.md)
+* [进程和线程的基本概念，进程间有哪些通信方式？](processManagement.md)
 * [多线程冲突了怎么办？](multiThreadConflict.md)
 * [怎么避免死锁](deadlockAvoid.md)
 * [什么是悲观锁、乐观锁？](allKindOfLocks.md)

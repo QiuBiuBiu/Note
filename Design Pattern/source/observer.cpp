@@ -7,7 +7,7 @@ class observer
 {
 public:
     virtual void onUpdate() = 0;
-    virtual ~observer() = default;
+    virtual ~observer() = default;  // 虚析构函数
 
 };
 using ObserverPtr = std::shared_ptr<observer>;
@@ -69,7 +69,7 @@ public:
     }
 
 private:
-    std::list<ObserverWPtr> observerLists;
+    std::list<ObserverWPtr> observerLists;  // 被观察者以weak_pointer的方式管理一组观察者
 
 };
 
