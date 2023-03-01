@@ -35,6 +35,7 @@
 * [mutex](concurrency/mutex.md)
 * [lock](concurrency/lock.md)
 * [conditon_variable](concurrency/condition_variable.md)
+* [thread](concurrency/thread.md)
 
 ## Others
 * [i++ vs ++i](others/i++.md)
