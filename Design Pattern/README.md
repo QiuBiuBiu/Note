@@ -44,6 +44,9 @@
         - 高度耦合的代码
 
 # 设计模式
+## UML
+* [UML](uml.md)
+
 ## 创建型 5种
 * [单例](source/singleton.cpp)
 * [工厂](source/factory.cpp)

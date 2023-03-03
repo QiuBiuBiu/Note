@@ -41,8 +41,8 @@ namespace LazyMode
     public:
         static SingletonPtr getInstance()
         {
-            std::lock_guard<std::mutex> lk(mMutex); // std::scoped_lock<std::mutex> lk(mMutex)
-            if (instance == nullptr)
+            std::lock_guard<std::mutex> lk(mMutex);
+            if (instance == nullptr) // 对于多进程并发的情况，一个进程已经创建完instance并释放锁了了，而另外一个进程此时获取了锁，故此时要判断instance是否为空，避免重复创建。
             {
                 instance = std::shared_ptr<Singleton>(new Singleton());
             }
@@ -66,9 +66,9 @@ namespace DoubleCheck
         static std::mutex mMutex;
 
     public:
-        static std::shared_ptr<Singleton>& getInstance()
+        static std::shared_ptr<Singleton> getInstance()
         {
-            if (instance == nullptr)
+            if (instance == nullptr) // 增加了一次判断，保证只有instance为空时才上锁（避免每次调用getInstance时都上锁，资源浪费）
             {
                 std::lock_guard<std::mutex> lk(mMutex);
                 if (instance == nullptr)
@@ -87,6 +87,26 @@ namespace DoubleCheck
 }
 
 
+namespace MagicStatic
+{
+    class Singleton
+    {
+    private:
+        Singleton() { std::cout << "constructor for MagicStatic" << std::endl; }
+    
+    public:
+        static Singleton& getInstance()
+        {
+            static Singleton instance; // “当变量在初始化的时候，并发同时进入声明语句，并发线程将会阻塞等待初始化结束。” 这样保证了并发线程在获取静态局部变量的时候一定是初始化过的，所以具有线程安全性。
+            return instance;
+        }
+        ~Singleton() { std::cout << "destructor for MagicStatic" << std::endl; }
+        Singleton(Singleton& ) = delete;
+        Singleton& operator= (const Singleton& ) = delete;
+    };
+}
+
+
 int main()
 {
     std::cout << " main " << std::endl;
@@ -94,6 +114,9 @@ int main()
     // auto lazy_ins = LazyMode::Singleton::getInstance();
     auto ins1 = DoubleCheck::Singleton::getInstance();
     auto ins2 = DoubleCheck::Singleton::getInstance();
+
+    // auto& magic_static_ins1 = MagicStatic::Singleton::getInstance(); // 注意在magic static模式下使用的时候需要声明单例的引用 Single& 才能获取对象。
+    // auto& magic_static_ins2 = MagicStatic::Singleton::getInstance();
     
     return 0;
 }
