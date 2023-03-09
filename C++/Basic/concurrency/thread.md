@@ -3,5 +3,5 @@
 
 
 ## Finding prime number using multi-thread way(N mean find all prime up to N)
-[常规方法+多线程](source/findPrimeNumUsingMultiThread.cpp)
-[筛法+多进程](source/findPrimeNumUsingMultiThread2.cpp)
+* [常规方法+多线程](source/findPrimeNumUsingMultiThread.cpp)
+* [筛法+多进程](source/findPrimeNumUsingMultiThread2.cpp)

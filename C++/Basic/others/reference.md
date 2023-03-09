@@ -31,6 +31,23 @@ C++11 标准新引入了另一种引用方式，称为右值引用，用 "&&" �
     - 消除两个对象交互时不必要的对象拷贝，节省运算存储资源，提高效率。
     - 能够更简洁明确地定义泛型函数。
 
+### 移动构造和复制构造
+```c++
+class demo
+{
+public:
+    demo() {}
+    demo(const demo& d) : num(new int(*d.num)) {}       // 复制构造，接受一个const的左值引用，做深拷贝
+    demo(demo&& d) : num(d.num) { d.num = nullptr; }    // 移动构造，接受一个右值引用，做浅拷贝
+
+private:
+    int* num;
+};
+```
+
+### std::move()和std::forward()
+std::move()()函数：将左值强制转换为右值
+
 ### 转移语义
 ```c++
     {
