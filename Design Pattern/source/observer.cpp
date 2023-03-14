@@ -31,7 +31,7 @@ public:
             }
         }) == observerLists.end())
         {
-            observerLists.push_back(ob);
+            observerLists.push_back(ob); // 隐式地将shared_ptr转化为weak_ptr
             return true;
         }
         return false;
