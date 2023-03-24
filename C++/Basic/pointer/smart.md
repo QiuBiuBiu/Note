@@ -1,8 +1,9 @@
 # 智能指针 
+参考来自：https://changkun.de/modern-cpp/zh-cn/05-pointers/
 RAII: 资源获取即初始化。对于一个对象而言，我们在初始化的时候调用**构造函数**申请空间，而在离开作用域时调用**析构函数**释放空间。
 
 ## shared_ptr
-std::shared_ptr 是一种智能指针，它**引用计数**来记录有多少个 shared_ptr 共同指向一个对象，从而消除显式的调用 delete，当**引用计数变为零的时候就会将对象自动删除**。
+std::shared_ptr 是一种智能指针，它**引用计数**来记录有多少个 shared_ptr 共同指向一个对象，当**引用计数变为零的时候就会将对象自动删除**，从而消除显式的调用 delete。
 1. std::make_shared 就能够用来消除显式的使用 new（消除代码的不对称），所以std::make_shared 会分配创建传入参数中的对象， 并返回这个对象类型的std::shared_ptr指针。
 2. std::shared_ptr 可以通过 get() 方法来获取原始指针，通过 reset() 来减少一个引用计数， 并通过use_count()来查看一个对象的引用计数。
 
@@ -16,6 +17,3 @@ std::shared_ptr 就会发现依然存在着资源无法释放的问题，比如�
 ## unique_ptr
 1. std::unique_ptr 是一种独占的智能指针，它禁止其他智能指针与其共享同一个对象。make_unique 方法从 C++14 才引入。
 2. 既然是独占，换句话说就是不可复制。但是，**我们可以利用 std::move 将其转移给其他的 unique_ptr**。
-
-
-
